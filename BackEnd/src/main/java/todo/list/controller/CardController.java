@@ -1,8 +1,6 @@
 package todo.list.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import todo.list.service.CardResponse;
 import todo.list.service.CardSaveDto;
 import todo.list.service.CardService;
@@ -24,5 +22,10 @@ public class CardController {
     @GetMapping("/cards")
     public CardResponse getAllCards() {
         return cardService.findCollections();
+    }
+
+    @PatchMapping("/cards/{cardId}")
+    public void modifyCard(@RequestBody CardModifyDto cardModifyDto) {
+        cardService.modify(cardModifyDto);
     }
 }
